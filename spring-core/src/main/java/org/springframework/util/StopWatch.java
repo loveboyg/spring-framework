@@ -337,12 +337,16 @@ public class StopWatch {
 			sb.append(unitName).append("  %       Task name\n");
 			sb.append(line);
 
-			int digits = total.indexOf('.');
-			if (digits < 0) {
-				digits = total.length();
-			}
-			nf.setMinimumIntegerDigits(digits);
-			nf.setMaximumFractionDigits(10 - digits);
+                        int digits = total.indexOf('.');
+                        if (digits < 0) {
+                                digits = total.length();
+                        }
+                        nf.setMinimumIntegerDigits(digits);
+                        int fractionDigits = 10 - digits;
+                        if (fractionDigits < 0) {
+                                fractionDigits = 0;
+                        }
+                        nf.setMaximumFractionDigits(fractionDigits);
 
 			for (TaskInfo task : this.taskList) {
 				sb.append(String.format("%-14s", (timeUnit == TimeUnit.NANOSECONDS ?
